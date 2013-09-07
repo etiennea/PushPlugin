@@ -11,7 +11,7 @@
 	<license>MIT</license>
 
 	<js-module src="www/PushNotification.js" name="PushNotification">
-		<clobbers target="progressHud" />
+		<clobbers target="PushNotification" />
 	</js-module>
 	
 	<platform name="android">
