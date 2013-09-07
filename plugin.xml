@@ -13,8 +13,9 @@
 	<js-module src="www/PushNotification.js" name="PushNotification">
 		<clobbers target="PushNotification" />
 	</js-module>
-	
+
 	<platform name="android">
+
 		<config-file target="res/xml/config.xml" parent="plugins">
 			<plugin name="PushPlugin" value="com.plugin.gcm.PushPlugin" />
 		</config-file>
@@ -54,7 +55,9 @@
 	<platform name="ios">
 
 		<config-file target="config.xml" parent="/widget/plugins">
-			<plugin name="PushPlugin" value="PushPlugin"/>
+			<feature name="PushPlugin">
+				<param name="ios-package" value="PushPlugin"/>
+			</feature>
 		</config-file>
 
 		<source-file src="src/ios/AppDelegate+notification.m" />
