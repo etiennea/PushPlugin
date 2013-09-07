@@ -15,14 +15,14 @@
 	<asset src="www/PushNotification.js" target="PushNotification.js" />
 
     <engines>
-      <engine name="cordova" version=">=2.0.0" />
-    </engines>	
-	
+      <engine name="cordova" version=">=3.0.0" />
+    </engines>
+    
 	<platform name="android">
         <config-file target="res/xml/config.xml" parent="plugins">
     		<plugin name="PushPlugin" value="com.plugin.gcm.PushPlugin" />
         </config-file>
-    
+
 		<config-file target="AndroidManifest.xml" parent="/manifest">
 			<uses-permission android:name="android.permission.GET_TASKS" />
 			<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -32,7 +32,7 @@
 			<permission android:name="$PACKAGE_NAME.permission.C2D_MESSAGE" android:protectionLevel="signature" />
 			<uses-permission android:name="$PACKAGE_NAME.permission.C2D_MESSAGE" />
   		</config-file>
-  		
+
      	<config-file target="AndroidManifest.xml" parent="/manifest/application">
 			<activity android:name="com.plugin.gcm.PushHandlerActivity"/>
  			<receiver android:name="com.plugin.gcm.CordovaGCMBroadcastReceiver" android:permission="com.google.android.c2dm.permission.SEND" >
@@ -51,22 +51,18 @@
 		<source-file src="src/android/com/plugin/gcm/PushHandlerActivity.java" target-dir="src/com/plugin/gcm/" />
 		<source-file src="src/android/com/plugin/gcm/PushPlugin.java" target-dir="src/com/plugin/gcm/" />
  		<source-file src="src/android/com/plugin/android-support-v13.jar" target-dir="libs/" />
-		
+
     </platform>
 
   <!-- ios -->
     <platform name="ios">
-		<!-- Cordova < 2.3 -->
-        <plugins-plist key="PushPlugin" string="PushPlugin" />
-        
-		<!-- Cordova >= 2.3 -->
-		<config-file target="config.xml" parent="plugins">
+
+		<config-file target="config.xml" parent="/widget/plugins">
 			<plugin name="PushPlugin" value="PushPlugin"/>
 		</config-file>
-        
+
         <source-file src="src/ios/AppDelegate+notification.m" />
         <source-file src="src/ios/PushPlugin.m" />
-        
         <header-file src="src/ios/AppDelegate+notification.h" />
         <header-file src="src/ios/PushPlugin.h" />
 

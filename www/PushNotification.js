@@ -1,7 +1,9 @@
 
+
+var exec = require('cordova/exec');
+
 var PushNotification = function() {
 };
-
 
 // Call this to register for push notifications. Content of [options] depends on whether we are working with APNS (iOS) or GCM (Android)
 PushNotification.prototype.register = function(successCallback, errorCallback, options) {
@@ -17,7 +19,7 @@ PushNotification.prototype.register = function(successCallback, errorCallback, o
         return
     }
 
-	cordova.exec(successCallback, errorCallback, "PushPlugin", "register", [options]);
+    cordova.exec(successCallback, errorCallback, "PushPlugin", "register", [options]);
 };
 
 // Call this to unregister for push notifications
@@ -52,14 +54,9 @@ PushNotification.prototype.setApplicationIconBadgeNumber = function(successCallb
         return
     }
 
-    cordova.exec(successCallback, successCallback, "PushPlugin", "setApplicationIconBadgeNumber", [{badge: badge}]);
+    cordova.exec(successCallback, errorCallback, "PushPlugin", "setApplicationIconBadgeNumber", [{badge: badge}]);
 };
 
 //-------------------------------------------------------------------
 
-if(!window.plugins) {
-    window.plugins = {};
-}
-if (!window.plugins.pushNotification) {
-    window.plugins.pushNotification = new PushNotification();
-}
+module.exports = new PushNotification();
