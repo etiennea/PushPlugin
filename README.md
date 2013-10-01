@@ -59,7 +59,6 @@ This plugin is for use with [Cordova](http://incubator.apache.org/cordova/), and
 
 2) Modify your **AndroidManifest.xml** and add the following lines to your manifest tag:
 
-			<uses-permission android:name="android.permission.GET_TASKS" />
 			<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 			<uses-permission android:name="android.permission.GET_ACCOUNTS" />
 			<uses-permission android:name="android.permission.WAKE_LOCK" />
@@ -99,7 +98,7 @@ Copy the following files to your project's Plugins folder:
 	
 Add a reference for this plugin to the plugins section in **config.xml**:
 
-	<plugin name="PushPlugin" value="PushPlugin" />
+	<gap:plugin name="com.phonegap.plugins.PushPlugin"/>
 
 
 Add the **PushNotification.js** script to your assets/www folder (or javascripts folder, wherever you want really) and reference it in your main index.html file.
@@ -110,7 +109,7 @@ Add the **PushNotification.js** script to your assets/www folder (or javascripts
 This plugin is based on [plugman](https://github.com/apache/cordova-plugman). to install it to your app,
 simply execute plugman as follows;
 
-	plugman --platform [PLATFORM] --project [TARGET-PATH] --plugin [PLUGIN-PATH]
+	plugman install --platform [PLATFORM] --project [TARGET-PATH] --plugin [PLUGIN-PATH]
 	
 	where
 		[PLATFORM] = ios or android
@@ -140,9 +139,9 @@ For Android, If you have not already done so, you'll need to set up a Google API
 In this example, be sure and substitute your own senderID. Get your senderID by signing into to your [google dashboard](https://code.google.com/apis/console/). The senderID is found at **Overview->Dashboard->Project Number**.
 
 	if (device.platform == 'android' || device.platform == 'Android') {
-		pushNotification.register(successHandler, errorHandler,{"senderID":"replace_with_sender_id","ecb":"onNotificationGCM"});
+		pushNotification.register(successHandler, errorHandler, {"senderID":"replace_with_sender_id", "ecb":"onNotificationGCM"});
 	} else {
-		pushNotification.register(tokenHandler, errorHandler {"badge":"true","sound":"true","alert":"true","ecb":"onNotificationAPN"});
+		pushNotification.register(tokenHandler, errorHandler, {"badge":"true", "sound":"true", "alert":"true", "ecb":"onNotificationAPN"});
 	}
 
 **successHandler** - called when a plugin method returns without error
