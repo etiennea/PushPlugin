@@ -16,7 +16,7 @@
 
 	<platform name="android">
 
-		<config-file target="res/xml/config.xml" parent="plugins">
+		<config-file target="res/xml/config.xml" parent="/*">
 			<plugin name="PushPlugin" value="com.plugin.gcm.PushPlugin" />
 		</config-file>
 
