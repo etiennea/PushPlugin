@@ -62,8 +62,7 @@
 
 	<!-- ios -->
 	<platform name="ios">
-		
-		<config-file target="config.xml" parent="/*">
+		<config-file target="config.xml" parent="/widget/plugins">
 			<feature name="PushPlugin">
 				<param name="ios-package" value="PushPlugin"/>
 			</feature>

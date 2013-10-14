@@ -37,7 +37,7 @@
 
 - (void)unregister:(CDVInvokedUrlCommand*)command;
 {
-	self.callbackId = command.callbackId;
+    self.callbackId = command.callbackId;
 
     [[UIApplication sharedApplication] unregisterForRemoteNotifications];
     [self successWithMessage:@"unregistered"];
@@ -45,7 +45,7 @@
 
 - (void)register:(CDVInvokedUrlCommand*)command;
 {
-	self.callbackId = command.callbackId;
+    self.callbackId = command.callbackId;
 
     NSMutableDictionary* options = [command.arguments objectAtIndex:0];
 
@@ -86,9 +86,9 @@
     isInline = NO;
 
     [[UIApplication sharedApplication] registerForRemoteNotificationTypes:notificationTypes];
-	
-	if (notificationMessage)			// if there is a pending startup notification
-		[self notificationReceived];	// go ahead and process it
+    
+    if (notificationMessage)            // if there is a pending startup notification
+        [self notificationReceived];    // go ahead and process it
 }
 
 /*
@@ -144,13 +144,13 @@
         [results setValue:dev.model forKey:@"deviceModel"];
         [results setValue:dev.systemVersion forKey:@"deviceSystemVersion"];
 
-		[self successWithMessage:[NSString stringWithFormat:@"%@", token]];
+        [self successWithMessage:[NSString stringWithFormat:@"%@", token]];
     #endif
 }
 
 - (void)didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
 {
-	[self failWithMessage:@"" withError:error];
+    [self failWithMessage:@"" withError:error];
 }
 
 - (void)notificationReceived {
@@ -167,7 +167,7 @@
             [jsonStr appendFormat:@"foreground:'%d',", 1];
             isInline = NO;
         }
-		else
+        else
             [jsonStr appendFormat:@"foreground:'%d',", 0];
         
         [jsonStr appendString:@"}"];
@@ -198,17 +198,17 @@
     }
 }
 
-- (void)setApplicationIconBadgeNumber:(NSMutableArray *)arguments withDict:(NSMutableDictionary *)options {
-	DLog(@"setApplicationIconBadgeNumber:%@\n withDict:%@", arguments, options);
-    
-	self.callbackId = [arguments pop];
-    
+- (void)setApplicationIconBadgeNumber:(CDVInvokedUrlCommand *)command {
+
+    self.callbackId = command.callbackId;
+
+    NSMutableDictionary* options = [command.arguments objectAtIndex:0];
     int badge = [[options objectForKey:@"badge"] intValue] ?: 0;
+
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:badge];
-    
+
     [self successWithMessage:[NSString stringWithFormat:@"app badge count set to %d", badge]];
 }
-
 -(void)successWithMessage:(NSString *)message
 {
     CDVPluginResult *commandResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:message];
